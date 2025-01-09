@@ -76,7 +76,7 @@ export function AnimatedBackground() {
               opacity: [0, 1, 1, 0], // Fade out after appearing
             }}
             transition={{
-              duration: 2.5, // Lightning strike duration
+              duration: 1.5, // Lightning strike duration
               ease: "easeInOut",
               repeat: Infinity,
             }}
