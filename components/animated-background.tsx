@@ -19,19 +19,9 @@ const COLORS = {
   ],
 };
 
-function generatePath(startX: number) {
-  const points = [];
-  const segments = 2; // Fewer points for a more lightning-like look
-
-  // Generate a zigzag path from top to bottom
-  for (let i = 0; i <= segments; i++) {
-    const y = (i / segments) * 100; // Progress evenly from top to bottom
-    const amplitude = 1 + Math.random() * 12; // Slightly irregular zigzag amplitude
-    const x = startX + (Math.random() > 0.1 ? amplitude : -amplitude); // Irregular zigzag
-    points.push(`${x},${y}`);
-  }
-
-  return `M ${points.join(" L ")}`;
+function generateStraightPath(startX: number) {
+  // Create a simple straight vertical path
+  return `M ${startX},0 L ${startX},100`;
 }
 
 export function AnimatedBackground() {
@@ -43,23 +33,21 @@ export function AnimatedBackground() {
   useEffect(() => {
     const colors = resolvedTheme === "dark" ? COLORS.dark : COLORS.light;
 
-    // Generate initial paths
-    const newPaths = Array.from({ length: 1 }, (_, i) => ({
-      id: i,
-      d: generatePath(Math.random() * 100), // Random start position
-      color: colors[i % colors.length],
-    }));
-    setPaths(newPaths);
+    // Generate multiple paths (e.g., 5 lines)
+    const generateMultiplePaths = () =>
+      Array.from({ length: 5 }, (_, i) => ({
+        id: Math.random(),
+        d: generateStraightPath(Math.random() * 100), // Random start position for each line
+        color: colors[i % colors.length],
+      }));
 
+    // Generate initial paths
+    setPaths(generateMultiplePaths());
+
+    // Update paths every 1.5 seconds
     const interval = setInterval(() => {
-      setPaths([
-        {
-          id: Math.random(),
-          d: generatePath(Math.random() * 100), // Random start position for each line
-          color: colors[Math.floor(Math.random() * colors.length)],
-        },
-      ]);
-    }, 1500); // New line every 1.5 seconds
+      setPaths(generateMultiplePaths());
+    }, 1500);
 
     return () => clearInterval(interval);
   }, [resolvedTheme]);
@@ -74,7 +62,7 @@ export function AnimatedBackground() {
         viewBox="0 0 100 100"
         xmlns="http://www.w3.org/2000/svg"
       >
-        {paths.map((path, index) => (
+        {paths.map((path) => (
           <motion.path
             key={path.id}
             d={path.d}
@@ -88,7 +76,7 @@ export function AnimatedBackground() {
               opacity: [0, 1, 1, 0], // Fade out after appearing
             }}
             transition={{
-              duration: 1.5, // Lightning strike duration
+              duration: 2.5, // Lightning strike duration
               ease: "easeInOut",
               repeat: Infinity,
             }}
