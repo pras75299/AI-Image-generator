@@ -82,3 +82,19 @@
     @apply bg-background text-foreground;
   }
 }
+@keyframes gradient-rotate {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient-border {
+  background-size: 200% 200%;
+  animation: gradient-rotate 2s linear infinite;
+}
