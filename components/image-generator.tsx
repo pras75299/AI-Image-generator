@@ -4,8 +4,21 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Loader2, Download, RefreshCw } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+
+const IMAGE_SIZES = [
+  { value: "1024x1024", label: "Square (1024x1024)" },
+  { value: "1024x1792", label: "Portrait (1024x1792)" },
+  { value: "1792x1024", label: "Landscape (1792x1024)" },
+];
 
 export function ImageGenerator() {
   const [prompt, setPrompt] = useState("");
@@ -26,6 +39,20 @@ export function ImageGenerator() {
     }
 
     setLoading(true);
+    // try {
+    //   await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulated delay
+    //   setImage(
+    //     "https://images.unsplash.com/photo-1699116550661-bea051952f96?q=80&w=1024"
+    //   );
+    // } catch (error) {
+    //   toast({
+    //     title: "Error",
+    //     description: "Failed to generate image. Please try again.",
+    //     variant: "destructive",
+    //   });
+    // } finally {
+    //   setLoading(false);
+    // }
     try {
       const response = await fetch(
         "https://api.openai.com/v1/images/generations",
@@ -85,8 +112,25 @@ export function ImageGenerator() {
             />
           </div>
 
-          <div className="flex justify-end">
-            <Button onClick={generateImage} disabled={loading}>
+          <div className="flex gap-4">
+            <Select value={size} onValueChange={setSize}>
+              <SelectTrigger>
+                <SelectValue placeholder="Select size" />
+              </SelectTrigger>
+              <SelectContent>
+                {IMAGE_SIZES.map((size) => (
+                  <SelectItem key={size.value} value={size.value}>
+                    {size.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+
+            <Button
+              onClick={generateImage}
+              disabled={loading}
+              className="flex-1"
+            >
               {loading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
