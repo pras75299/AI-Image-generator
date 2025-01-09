@@ -15,7 +15,7 @@ export default function Home() {
         <div className="flex flex-col items-center justify-center space-y-8 pt-12">
           <div className="flex items-center space-x-2">
             <Sparkles className="h-8 w-8 text-primary animate-pulse" />
-            <h1 className="text-4xl md:text-6xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/50">
+            <h1 className="text-4xl md:text-6xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/50 leading-relaxed pb-2">
               AI Image Generator
             </h1>
           </div>
