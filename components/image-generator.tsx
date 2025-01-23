@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
@@ -97,8 +97,24 @@ export function ImageGenerator() {
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState<string | null>(null);
   const { toast } = useToast();
+  const [generationCount, setGenerationCount] = useState(0);
+  const maxGenerations = Number(process.env.NEXT_PUBLIC_MAX_GENERATIONS) || 2;
+
+  useEffect(() => {
+    const storedCount = localStorage.getItem("generationCount") || "0";
+    setGenerationCount(parseInt(storedCount));
+  }, []);
 
   const generateImage = async () => {
+    if (generationCount >= maxGenerations) {
+      toast({
+        title: "Generation limit reached",
+        description: `You have reached the maximum limit of ${maxGenerations} image generations. Please try again later.`,
+        variant: "destructive",
+      });
+      return;
+    }
+
     if (!prompt) {
       toast({
         title: "Please enter a prompt",
@@ -143,9 +159,13 @@ export function ImageGenerator() {
       const data = await response.json();
       setImage(data.data[0].url);
 
+      const newCount = generationCount + 1;
+      setGenerationCount(newCount);
+      localStorage.setItem("generationCount", newCount.toString());
+
       toast({
         title: "Image generated successfully",
-        description: "Your image has been created!",
+        description: `${maxGenerations - newCount} generations remaining`,
       });
     } catch (error) {
       toast({
@@ -221,6 +241,9 @@ export function ImageGenerator() {
                 "Generate Image"
               )}
             </Button>
+          </div>
+          <div className="text-sm text-muted-foreground text-right">
+            {maxGenerations - generationCount} generations remaining
           </div>
         </div>
       </Card>
