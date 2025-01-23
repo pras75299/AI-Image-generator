@@ -16,7 +16,7 @@ This project uses OpenAI's API to generate images based on text descriptions (pr
 
 1. Clone this repository
 2. Install dependencies
-3. Create a `.env` file and add your OpenAI API key for example you can have a look at `.env.local`:
+3. Create a `.env` file and add your OpenAI API key :
 
 ```
 NEXT_PUBLIC_OPENAI_API_KEY=your_api_key_here
