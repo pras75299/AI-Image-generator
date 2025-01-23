@@ -14,11 +14,11 @@ import {
 import { Loader2, Download, RefreshCw } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
-const IMAGE_SIZES = [
-  { value: "1024x1024", label: "Square (1024x1024)" },
-  { value: "1024x1792", label: "Portrait (1024x1792)" },
-  { value: "1792x1024", label: "Landscape (1792x1024)" },
-];
+// const IMAGE_SIZES = [
+//   { value: "1024x1024", label: "Square (1024x1024)" },
+//   { value: "1024x1792", label: "Portrait (1024x1792)" },
+//   { value: "1792x1024", label: "Landscape (1792x1024)" },
+// ];
 
 const IMAGE_STYLES = [
   {
@@ -206,11 +206,7 @@ export function ImageGenerator() {
                 <SelectValue placeholder="Select size" />
               </SelectTrigger>
               <SelectContent>
-                {IMAGE_SIZES.map((size) => (
-                  <SelectItem key={size.value} value={size.value}>
-                    {size.label}
-                  </SelectItem>
-                ))}
+                <SelectItem value="1024x1024">Square (1024x1024)</SelectItem>
               </SelectContent>
             </Select>
 
