@@ -200,9 +200,9 @@ export function ImageGenerator() {
             />
           </div>
 
-          <div className="flex gap-4">
+          <div className="flex flex-col sm:flex-row gap-4">
             <Select value={size} onValueChange={setSize}>
-              <SelectTrigger>
+              <SelectTrigger className="w-full sm:w-[200px]">
                 <SelectValue placeholder="Select size" />
               </SelectTrigger>
               <SelectContent>
@@ -211,7 +211,7 @@ export function ImageGenerator() {
             </Select>
 
             <Select value={style} onValueChange={setStyle}>
-              <SelectTrigger>
+              <SelectTrigger className="w-full sm:w-[200px]">
                 <SelectValue placeholder="Select style" />
               </SelectTrigger>
               <SelectContent>
@@ -226,7 +226,7 @@ export function ImageGenerator() {
             <Button
               onClick={generateImage}
               disabled={loading}
-              className="flex-1"
+              className="w-full sm:flex-1"
             >
               {loading ? (
                 <>
