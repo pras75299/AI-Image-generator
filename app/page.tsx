@@ -1,6 +1,6 @@
 import { ImageGenerator } from "@/components/image-generator";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { Sparkles } from "lucide-react";
+import { Sparkles, Heart } from "lucide-react";
 import { AnimatedBackground } from "@/components/animated-background";
 
 export default function Home() {
@@ -27,6 +27,18 @@ export default function Home() {
           </p>
 
           <ImageGenerator />
+          <footer className="fixed bottom-0 w-full p-4 flex items-center justify-center gap-2 text-muted-foreground">
+            Made with <Heart className="h-4 w-4 text-red-500 animate-pulse" />{" "}
+            by{" "}
+            <a
+              href="https://github.com/pras75299"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/50 hover:opacity-80 transition-opacity"
+            >
+              Prashant Kumar Singh
+            </a>
+          </footer>
         </div>
       </div>
     </main>
