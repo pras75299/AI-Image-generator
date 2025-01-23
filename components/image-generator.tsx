@@ -20,6 +20,17 @@ const IMAGE_SIZES = [
   { value: "1792x1024", label: "Landscape (1792x1024)" },
 ];
 
+const SYSTEM_PROMPT = `
+You are a master AI artist specializing in creating stunning anime and manga-style illustrations. Create images with:
+- Vivid, eye-catching colors and dynamic lighting
+- Clean, precise linework and detailed character designs
+- Professional composition and dramatic angles
+- Modern anime aesthetics with attention to highlights and shadows
+- Careful attention to proportions and anatomical accuracy
+- Background elements that enhance the overall scene
+Please maintain a family-friendly style suitable for all audiences.
+`;
+
 export function ImageGenerator() {
   const [prompt, setPrompt] = useState("");
   const [size, setSize] = useState("1024x1024");
@@ -64,7 +75,7 @@ export function ImageGenerator() {
           },
           body: JSON.stringify({
             model: "dall-e-3",
-            prompt,
+            prompt: `${SYSTEM_PROMPT} ${prompt}`,
             n: 1,
             size: size,
             quality: "standard",
