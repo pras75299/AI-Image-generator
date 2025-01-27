@@ -14,12 +14,6 @@ import {
 import { Loader2, Download, RefreshCw } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
-// const IMAGE_SIZES = [
-//   { value: "1024x1024", label: "Square (1024x1024)" },
-//   { value: "1024x1792", label: "Portrait (1024x1792)" },
-//   { value: "1792x1024", label: "Landscape (1792x1024)" },
-// ];
-
 const IMAGE_STYLES = [
   {
     value: "anime",
@@ -86,6 +80,48 @@ Please maintain a family-friendly style suitable for all audiences.`,
 - Proper depth of field
 - Modern CGI aesthetics
 - Physically accurate lighting
+Please maintain a family-friendly style suitable for all audiences.`,
+  },
+  {
+    value: "gaming",
+    label: "Gaming",
+    prompt: `You are a master AI artist specializing in creating modern video game art. Create images with:
+- High-quality game engine render style
+- Dynamic action poses and compositions
+- Dramatic lighting and particle effects
+- Detailed character and environment designs
+- Modern gaming visual aesthetics
+- Rich atmospheric elements
+- Strong focal points and depth
+- Cinematic game scene presentation
+Please maintain a family-friendly style suitable for all audiences.`,
+  },
+  {
+    value: "comic-&-cartoon",
+    label: "Comic & Cartoon",
+    prompt: `You are a master AI artist specializing in creating comic and cartoon style illustrations. Create images with:
+- Bold, clean outlines and flat colors
+- Expressive character designs and exaggerated features
+- Dynamic poses and energetic compositions
+- Simplified backgrounds with proper perspective
+- Comic-style shading and highlights
+- Clear storytelling elements
+- Characteristic cartoon aesthetics
+- Fun and appealing visual style
+Please maintain a family-friendly style suitable for all audiences.`,
+  },
+  {
+    value: "photograpic",
+    label: "Photographic",
+    prompt: `You are a master AI artist specializing in creating professional photographic images. Create images with:
+- Professional DSLR camera quality and resolution
+- Perfect exposure and white balance
+- Sharp focus on key subjects with natural bokeh
+- Rule of thirds and golden ratio compositions
+- Natural color grading and contrast
+- Professional lighting techniques
+- Authentic photojournalistic style
+- High dynamic range and tonal depth
 Please maintain a family-friendly style suitable for all audiences.`,
   },
 ];
